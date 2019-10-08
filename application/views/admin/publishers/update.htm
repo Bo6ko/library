@@ -1,0 +1,137 @@
+<div class="content-main">
+
+	<h1>Create Publishers:</h1>
+	<form id="form_publisher" class="admin-form" method="post" action="" onsubmit="return false">
+
+		<input type="hidden" name="publisher_id" value="{$data.publisher_id}" />
+
+		<div class="field">
+			<label for="publisher_name">Name</label>
+			<input id="publisher_name" type="text" name="publisher_name" value="{if isset($data.publisher_name) && !empty($data.publisher_name)}{$data.publisher_name|escape}{/if}" placeholder="publisher name">
+			{if isset($data) && $data.status == false}<span class="error">{$data.publisher_name_message}</span>{/if}
+		</div>
+
+		<div class="field">
+			<label for="country_id">Country: </label>
+			<select id="country_id" name="country_id">
+				<option value=""> - Choice - </option>
+				{if isset($countries) && !empty($countries) && is_array($countries) && count($countries) > 0}
+				{foreach from=$countries item=country}
+				<option value="{$country.country_id}" {if isset($data.country_id) && $data.country_id == $country.country_id}selected="selected"{/if}> {$country.country_name} </option>
+				{/foreach}
+				{/if}
+			</select>
+			{if isset($data) && $data.status == false}<span class="error">{$data.country_id_message}</span>{/if}
+		</div>
+
+		<div class="field">
+			<label for="publisher_city">City</label>
+			<input id="publisher_city" type="text" name="publisher_city" value="{if isset($data.publisher_city) && !empty($data.publisher_city)}{$data.publisher_city|escape}{/if}" placeholder="publisher city">
+			{if isset($data) && $data.status == false}<span class="error">{$data.publisher_city_message}</span>{/if}
+		</div>
+
+		<div class="field">
+			<label for="publisher_address" >Address</label>
+			<input id="publisher_address" type="text" name="publisher_address" value="{if isset($data.publisher_address) && !empty($data.publisher_address)}{$data.publisher_address|escape}{/if}" placeholder="publisher address">
+			{if isset($data) && $data.status == false}<span class="error">{$data.publisher_address_message}</span>{/if}
+		</div>
+
+		<div class="field">
+			<label for="publisher_postcode">Postcode</label>
+			<input id="publisher_postcode" type="text" name="publisher_postcode" value="{if isset($data.publisher_postcode) && !empty($data.publisher_postcode)}{$data.publisher_postcode|escape}{/if}" placeholder="publisher postcode">
+			{if isset($data) && $data.status == false}<span class="error">{$data.publisher_postcode_message}</span>{/if}
+		</div>
+
+		<div class="field">
+			<label for="publisher_email">Email</label>
+			<input id="publisher_email" type="text" name="publisher_email" value="{if isset($data.publisher_email) && !empty($data.publisher_email)}{$data.publisher_email|escape}{/if}" placeholder="publisher email">
+			{if isset($data) && $data.status == false}<span class="error">{$data.publisher_email_message}</span>{/if}
+		</div>
+
+		<div class="field">
+			<label for="publisher_phone">Phone</label>
+			<input id="publisher_phone" type="text" name="publisher_phone" value="{if isset($data.publisher_phone) && !empty($data.publisher_phone)}{$data.publisher_phone|escape}{/if}" placeholder="publisher phone">
+			{if isset($data) && $data.status == false}<span class="error">{$data.publisher_phone_message}</span>{/if}
+		</div>
+
+		<div class="field">
+			<label for="publisher_domain">Domain</label>
+			<input id="publisher_domain" type="text" name="publisher_domain" value="{if isset($data.publisher_domain) && !empty($data.publisher_domain)}{$data.publisher_domain|escape}{/if}" placeholder="publisher domain">
+			{if isset($data) && $data.status == false}<span class="error">{$data.publisher_domain_message}</span>{/if}
+		</div>
+
+		<div class="field">
+			<label for="publisher_bulstat">Bulstat</label>
+			<input id="publisher_bulstat" type="text" name="publisher_bulstat" value="{if isset($data.publisher_bulstat) && !empty($data.publisher_bulstat)}{$data.publisher_bulstat|escape}{/if}" placeholder="publisher bulstat">
+			{if isset($data) && $data.status == false}<span class="error">{$data.publisher_bulstat_message}</span>{/if}
+		</div>
+
+		<div class="field">
+			<label for="administrator_id">Administrator</label>
+			<select id="administrator_id" name="administrator_id">
+				<option> choice </option>
+				{if isset($administrators) && !empty($administrators) && is_array($administrators) && count($administrators) > 0}
+				{foreach from=$administrators item=administrator}
+				<option value="{$administrator.administrator_id}" {if isset($data.administrator_id) && $data.administrator_id == $administrator.administrator_id}selected="selected"{/if}> {$administrator.administrator_firstname} </option>
+				{/foreach}
+				{/if}
+			</select>
+			{if isset($data) && $data.status == false}<span class="error">{$data.administrator_id_message}</span>{/if}
+		</div>
+
+		<input class="btn update_publisher" onclick="submitPublisher()" type="submit" value="Submit" />
+
+
+	</form>
+
+</div>
+
+
+
+<script type="text/javascript">
+
+	function submitPublisher(  ) {
+
+		var $form_holder = $('form#form_publisher');
+
+		var response    = $("#response");
+
+		response.html('izprashtane na zaqvka...').removeClass("error").removeClass("success");
+
+
+
+		var data = $form_holder.serialize();
+
+		//alert('{$data.publisher_id}');
+
+		$.ajax({
+			url			: 'http://library.localhost/admin/publishers/update_ajax/{$data.publisher_id}',
+			type		: "POST",
+			dataType	: "json",
+			data		: data,
+			success		: function( json ) {
+
+
+				if ( json.status ) {
+					// true
+					response.addClass("success");
+				} else{
+					// false
+					response.addClass("error");
+				}
+
+				response.html( json.message );
+
+				console.log(json);
+
+
+			},
+			error		: function(error) {
+				console.log(error);
+				console.log(error.responseText);
+			}
+		});
+
+	}
+
+</script>

@@ -1,0 +1,85 @@
+<div class="content-main">
+
+	<h1>Create Publishers:</h1>
+	<form class="admin-form" method="post" action="">
+
+		<div class="field">
+			<label for="publisher_name">Name</label>
+			<input id="publisher_name" type="text" name="publisher_name" value="{if isset($post.publisher_name) && !empty($post.publisher_name)}{$post.publisher_name|escape}{/if}" placeholder="publisher name">
+			{if isset($data) && $data.status == false}<span class="error">{$data.publisher_name_message}</span>{/if}
+		</div>
+
+		<div class="field">
+			<label for="country_id">Country: </label>
+			<select id="country_id" name="country_id">
+				<option value=""> - Choice - </option>
+				{if isset($countries) && !empty($countries) && is_array($countries) && count($countries) > 0}
+				{foreach from=$countries item=country}
+				<option value="{$country.country_id}" {if isset($post.country_id) && $post.country_id == $country.country_id}selected="selected"{/if}> {$country.country_name} </option>
+				{/foreach}
+				{/if}
+			</select>
+			{if isset($data) && $data.status == false}<span class="error">{$data.country_id_message}</span>{/if}
+		</div>
+
+		<div class="field">
+			<label for="publisher_city">City</label>
+			<input id="publisher_city" type="text" name="publisher_city" value="{if isset($post.publisher_city) && !empty($post.publisher_city)}{$post.publisher_city|escape}{/if}" placeholder="publisher city">
+			{if isset($data) && $data.status == false}<span class="error">{$data.publisher_city_message}</span>{/if}
+		</div>
+
+		<div class="field">
+			<label for="publisher_address" >Address</label>
+			<input id="publisher_address" type="text" name="publisher_address" value="{if isset($post.publisher_address) && !empty($post.publisher_address)}{$post.publisher_address|escape}{/if}" placeholder="publisher address">
+			{if isset($data) && $data.status == false}<span class="error">{$data.publisher_address_message}</span>{/if}
+		</div>
+
+		<div class="field">
+			<label for="publisher_postcode">Postcode</label>
+			<input id="publisher_postcode" type="text" name="publisher_postcode" value="{if isset($post.publisher_postcode) && !empty($post.publisher_postcode)}{$post.publisher_postcode|escape}{/if}" placeholder="publisher postcode">
+			{if isset($data) && $data.status == false}<span class="error">{$data.publisher_postcode_message}</span>{/if}
+		</div>
+
+		<div class="field">
+			<label for="publisher_email">Email</label>
+			<input id="publisher_email" type="text" name="publisher_email" value="{if isset($post.publisher_email) && !empty($post.publisher_email)}{$post.publisher_email|escape}{/if}" placeholder="publisher email">
+			{if isset($data) && $data.status == false}<span class="error">{$data.publisher_email_message}</span>{/if}
+		</div>
+
+		<div class="field">
+			<label for="publisher_phone">Phone</label>
+			<input id="publisher_phone" type="text" name="publisher_phone" value="{if isset($post.publisher_phone) && !empty($post.publisher_phone)}{$post.publisher_phone|escape}{/if}" placeholder="publisher phone">
+			{if isset($data) && $data.status == false}<span class="error">{$data.publisher_phone_message}</span>{/if}
+		</div>
+
+		<div class="field">
+			<label for="publisher_domain">Domain</label>
+			<input id="publisher_domain" type="text" name="publisher_domain" value="{if isset($post.publisher_domain) && !empty($post.publisher_domain)}{$post.publisher_domain|escape}{/if}" placeholder="publisher domain">
+			{if isset($data) && $data.status == false}<span class="error">{$data.publisher_domain_message}</span>{/if}
+		</div>
+
+		<div class="field">
+			<label for="publisher_bulstat">Bulstat</label>
+			<input id="publisher_bulstat" type="text" name="publisher_bulstat" value="{if isset($post.publisher_bulstat) && !empty($post.publisher_bulstat)}{$post.publisher_bulstat|escape}{/if}" placeholder="publisher bulstat">
+			{if isset($data) && $data.status == false}<span class="error">{$data.publisher_bulstat_message}</span>{/if}
+		</div>
+
+		<div class="field">
+			<label for="administrator_id">Administrator</label>
+			<select id="administrator_id" name="administrator_id">
+				<option> choice </option>
+				{if isset($administrators) && !empty($administrators) && is_array($administrators) && count($administrators) > 0}
+					{foreach from=$administrators item=administrator}
+						<option value="{$administrator.administrator_id}" {if isset($post.administrator_id) && $post.administrator_id == $administrator.administrator_id}selected="selected"{/if}> {$administrator.administrator_firstname} </option>
+					{/foreach}
+				{/if}
+			</select>
+			{if isset($data) && $data.status == false}<span class="error">{$data.administrator_id_message}</span>{/if}
+		</div>
+
+		<input class="btn" type="submit" value="Submit" />
+
+
+	</form>
+
+</div>

@@ -1,0 +1,63 @@
+#	Load modrewrite engine
+RewriteEngine on
+RewriteBase /
+
+#	Load modrewrite conditions
+RewriteCond $1 !^(index\.php|phpinfo\.php|favicon\.ico|robots\.txt|files|images|i|js|css|plugins|resources|uploads|bootstrap|fonts|temp|operations|userfiles|newsletters)
+
+<IfModule mod_headers.c>
+  <FilesMatch ".(js|css|xml|gz|html)$">
+    Header append Vary: Accept-Encoding
+  </FilesMatch>
+</IfModule>
+
+# BEGIN GZIP
+# mod_gzip compression (legacy, Apache 1.3)
+<IfModule mod_gzip.c>
+mod_gzip_on Yes
+mod_gzip_dechunk Yes
+mod_gzip_item_include file \.(html?|xml|txt|css|js|swf|woff|woff2)$
+mod_gzip_item_include handler ^cgi-script$
+mod_gzip_item_include mime ^text/.*
+mod_gzip_item_include mime ^application/x-javascript.*
+mod_gzip_item_exclude mime ^image/.*
+mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
+</IfModule>
+# END GZIP
+
+# DEFLATE compression
+<IfModule mod_deflate.c>
+# Set compression for: html,txt,xml,js,css
+AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml application/xhtml+xml text/javascript text/css application/x-javascript application/x-font-ttf application/x-font-opentype image/svg+xml
+AddType application/font-woff2 .woff2
+# Deactivate compression for buggy browsers
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+BrowserMatch ^Mozilla/4.0[678] no-gzip
+BrowserMatch bMSIE !no-gzip !gzip-only-text/html
+# Set header information for proxies
+Header append Vary User-Agent
+</IfModule>
+# END DEFLATE
+
+## EXPIRES CACHING ##
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpg "access 1 week"
+ExpiresByType image/jpeg "access 1 week"
+ExpiresByType image/gif "access 1 week"
+ExpiresByType image/png "access 1 week"
+ExpiresByType text/css "access 1 week"
+ExpiresByType application/pdf "access 1 week"
+ExpiresByType application/javascript "access 1 week"
+ExpiresByType application/x-javascript "access 1 week"
+ExpiresByType application/x-shockwave-flash "access 1 month"
+ExpiresByType image/x-icon "access 1 month"
+ExpiresDefault "access 1 week"
+</IfModule>
+## EXPIRES CACHING ##
+
+#	Load modrewrite rule
+RewriteRule ^(.*)$ index.php?/$1 [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ index.php?/$1 [L]

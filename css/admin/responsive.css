@@ -1,0 +1,135 @@
+/* ----------------------------------------------------------------
+	Responsive CSS
+-----------------------------------------------------------------*/
+
+
+@media (max-width: 1200px) {
+
+	div.header div.header-search {
+		width: calc(100% - 490px);
+	}
+
+	div.header div.header-info {
+		width: 440px;
+	}
+
+	div.content div.content-main {
+		width: 100%;
+	}
+
+	div.content-right {
+		margin-left: 0px;
+		width: 100%;
+	}
+
+	div.content-right div.block-holder {
+		float: left;
+		width: calc(50% - 20px);
+		height: 200px;
+	}
+
+	div.content-right div.block-holder:nth-child(2n+2) {
+		margin-left: 30px;
+	}
+
+}
+
+@media (max-width: 940px) {
+
+	div.header div.header-info {
+		width: calc(100% - 30px);
+	}
+	div.header div.header-search {
+		width: calc(100% - 20px);
+	}
+
+	div.header div.header-info div.profile {
+		width: calc(100% - 215px);
+		text-align:  right;
+	}
+
+}
+
+@media (max-width: 850px) {
+
+	div.content-right div.block-holder {
+		width: 100%;
+		margin: 0px!important;
+	}
+
+	table {
+		display: block;
+		overflow-x: auto;
+		white-space: nowrap;
+	}
+
+}
+
+
+@media (max-width: 640px) {
+
+	body.reduction div.header {
+		width: calc(100% - 71px);
+	}
+
+	body.reduction div.content {
+		width: calc(100% - 131px);
+	}
+
+}
+
+@media (max-width: 530px) {
+
+	div.header div.header-info div.profile {
+		width: calc(100% - 70px);
+	}
+
+	div.header div.header-info div.icon-nav {
+		width: calc(100% - 30px);
+		text-align: right;
+		padding: 0px;
+	}
+
+	div.header div.header-info div.icon-nav div.settings {
+		margin-right: 0px;
+	}
+
+	div.header div.header-search  {
+		padding-top: 0px;
+	}
+
+	div.header div.header-search input[type="text"] {
+		width: calc(100% - 40px);
+	}
+
+	div.header div.header-search form {
+		width: calc(100% - 50px);
+	}
+
+}
+
+@media (max-width: 390px) {
+
+	div.header div.header-info div.profile {
+		width: calc(100% - 20px);
+		padding: 5px 0px 0px 0px;
+	}
+
+	div.header div.header-info a.logout {
+		position: absolute;
+		right: 30px;
+		top: 57px;
+	}
+
+	div.header div.header-info div.icon-nav {
+		width: calc(100% - 30px);
+		text-align: left;
+	}
+
+	div.header div.header-search input[type="text"] {
+		width: calc(100% - 40px);
+	}
+
+}
+
+

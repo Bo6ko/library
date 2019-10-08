@@ -1,0 +1,147 @@
+	<form class="search" method="GET" action="">
+
+		<div class="filter">
+			<label for="publisher_id">Publisher id: </label><br />
+			<input id="publisher_id" type="text" name="publisher_id" value="{if isset($smarty.get.publisher_id) && !empty($smarty.get.publisher_id)}{$smarty.get.publisher_id}{/if}" >
+		</div>
+
+		<div class="filter">
+			<label for="publisher_name">Publisher name: </label><br />
+			<input id="publisher_name" type="text" name="publisher_name" value="{if isset($smarty.get.publisher_name) && !empty($smarty.get.publisher_name)}{$smarty.get.publisher_name|escape}{/if}" >
+		</div>
+
+		<div class="filter">
+			<label for="country_id">Country: </label><br />
+			<select id="country_id" name="country_id">
+				<option value=""> - Choice - </option>
+				{if isset($countries) && !empty($countries) && is_array($countries) && count($countries) > 0}
+				{foreach from=$countries item=country}
+				<option value="{$country.country_id}" {if isset($smarty.get.country_id) && $smarty.get.country_id == $country.country_id}selected="selected"{/if}> {$country.country_name} </option>
+				{/foreach}
+				{/if}
+			</select>
+		</div>
+
+		<div class="filter">
+			<label for="publisher_city">City: </label><br />
+			<input id="publisher_city" type="text" name="publisher_city" value="{if isset($smarty.get.publisher_city) && !empty($smarty.get.publisher_city)}{$smarty.get.publisher_city|escape}{/if}" >
+		</div>
+
+		<div class="filter">
+			<label for="publisher_address">Address: </label><br />
+			<input id="publisher_address" type="text" name="publisher_address" value="{if isset($smarty.get.publisher_address) && !empty($smarty.get.publisher_address)}{$smarty.get.publisher_address|escape}{/if}" >
+		</div>
+
+		<div class="filter">
+			<label for="publisher_bulstat">Bulstat: </label><br />
+			<input id="publisher_bulstat" type="text" name="publisher_bulstat" value="{if isset($smarty.get.publisher_bulstat) && !empty($smarty.get.publisher_bulstat)}{$smarty.get.publisher_bulstat|escape}{/if}" >
+		</div>
+
+		<div class="filter">
+			<label for="publisher_postcode">Postcode: </label><br />
+			<input id="publisher_postcode" type="text" name="publisher_postcode" value="{if isset($smarty.get.publisher_postcode) && !empty($smarty.get.publisher_postcode)}{$smarty.get.publisher_postcode|escape}{/if}" >
+		</div>
+
+		<div class="filter">
+			<label for="publisher_phone">Phone: </label><br />
+			<input id="publisher_phone" type="text" name="publisher_phone" value="{if isset($smarty.get.publisher_phone) && !empty($smarty.get.publisher_phone)}{$smarty.get.publisher_phone|escape}{/if}" >
+		</div>
+
+		<div class="filter">
+			<label for="publisher_email">Email: </label><br />
+			<input id="publisher_email" type="text" name="publisher_email" value="{if isset($smarty.get.publisher_email) && !empty($smarty.get.publisher_email)}{$smarty.get.publisher_email|escape}{/if}" >
+		</div>
+
+		<div class="filter">
+			<label for="publisher_domain">Domain: </label><br />
+			<input id="publisher_domain" type="text" name="publisher_domain" value="{if isset($smarty.get.publisher_domain) && !empty($smarty.get.publisher_domain)}{$smarty.get.publisher_domain|escape}{/if}" >
+		</div>
+
+		<div class="filter">
+			<label for="administrator_id">Administrator: </label><br />
+			<select id="administrator_id" name="administrator_id">
+				<option value=""> - Choice - </option>
+				{if isset($administrators) && !empty($administrators) && is_array($administrators) && count($administrators) > 0}
+				{foreach from=$administrators item=administrator}
+				<option value="{$administrator.administrator_id}" {if isset($smarty.get.administrator_id) && $smarty.get.administrator_id == $administrator.administrator_id}selected="selected"{/if}> {$administrator.administrator_firstname} </option>
+				{/foreach}
+				{/if}
+			</select>
+		</div>
+
+		<div class="filter">
+			<label for="order_by">Order by: </label><br />
+			<select id="order_by" name="order_by">
+				<option value=""> - Choice - </option>
+				<option value="asc" {if isset($smarty.get.order_by) && $smarty.get.order_by == asc}selected="selected"{/if}> ASC </option>
+				<option value="desc" {if isset($smarty.get.order_by) && $smarty.get.order_by == desc}selected="selected"{/if}> DESC </option>
+			</select>
+		</div>
+
+		<div class="filter">
+			<label for="sort_by">Sort by: </label><br />
+			<select id="sort_by" name="sort_by">
+				<option value=""> - Choice - </option>
+				<option value="publisher_id" {if isset($smarty.get.sort_by) && $smarty.get.sort_by == publisher_id}selected="selected"{/if}> ID </option>
+				<option value="country_id" {if isset($smarty.get.sort_by) && $smarty.get.sort_by == country_id}selected="selected"{/if}> Country </option>
+				<option value="publisher_name" {if isset($smarty.get.sort_by) && $smarty.get.sort_by == publisher_name}selected="selected"{/if}> Name </option>
+				<option value="publisher_city" {if isset($smarty.get.sort_by) && $smarty.get.sort_by == publisher_city}selected="selected"{/if}> City </option>
+				<option value="publisher_address" {if isset($smarty.get.sort_by) && $smarty.get.sort_by == publisher_address}selected="selected"{/if}> Address </option>
+				<option value="publisher_postcode" {if isset($smarty.get.sort_by) && $smarty.get.sort_by == publisher_postcode}selected="selected"{/if}> Postcode </option>
+				<option value="publisher_email" {if isset($smarty.get.sort_by) && $smarty.get.sort_by == publisher_email}selected="selected"{/if}> Email </option>
+				<option value="publisher_phone" {if isset($smarty.get.sort_by) && $smarty.get.sort_by == publisher_phone}selected="selected"{/if}> Phone </option>
+				<option value="publisher_domain" {if isset($smarty.get.sort_by) && $smarty.get.sort_by == publisher_domain}selected="selected"{/if}> Domain </option>
+				<option value="publisher_bulstat" {if isset($smarty.get.sort_by) && $smarty.get.sort_by == publisher_bulstat}selected="selected"{/if}> Bulstat </option>
+				<option value="administrator_id" {if isset($smarty.get.sort_by) && $smarty.get.sort_by == administrator_id}selected="selected"{/if}> Administrator </option>
+				<option value="created" {if isset($smarty.get.sort_by) && $smarty.get.sort_by == created}selected="selected"{/if}> Date </option>
+				<option value="status" {if isset($smarty.get.sort_by) && $smarty.get.sort_by == status}selected="selected"{/if}> Status </option>
+			</select>
+		</div>
+
+		<div class="filter">
+			<input class="btn" type="submit" value="Submit" />
+		</div>
+		<div class="clear"></div>
+	</form>
+	<br />
+
+	{if isset($results) && !empty($results) && is_array($results) }
+		<table class="publishers">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Country</th>
+					<th>City</th>
+					<th>Address</th>
+					<th>Bulstat</th>
+					<th>Post code</th>
+					<th>Phone</th>
+					<th>Email</th>
+					<th>Domain</th>
+					<th>Administrator</th>
+				</tr>
+			</thead>
+		{foreach from=$results.data item=publisher}
+			<tbody>
+				<tr>
+					<td><div class="publisher_name">{$publisher.publisher_id}</div></td>
+					<td><div class="publisher_name">{$publisher.publisher_name}</div></td>
+					<td><div class="publisher_name">{$publisher.country_name}</div></td>
+					<td><div class="publisher_name">{$publisher.publisher_city}</div></td>
+					<td><div class="publisher_name">{$publisher.publisher_address}</div></td>
+					<td><div class="publisher_name">{$publisher.publisher_bulstat}</div></td>
+					<td><div class="publisher_name">{$publisher.publisher_postcode}</div></td>
+					<td><div class="publisher_name">{$publisher.publisher_phone}</div></td>
+					<td><div class="publisher_name">{$publisher.publisher_email}</div></td>
+					<td><div class="publisher_name">{$publisher.publisher_domain}</div></td>
+					<td><div class="publisher_name">{$publisher.administrator_firstname}</div></td>
+				</tr>
+			</tbody>
+		{/foreach}
+
+		</table>
+
+	{/if}
+
+	{if ( isset( $results.pagination ) )}<div class="clear"> </div>{$results.pagination}{/if}
